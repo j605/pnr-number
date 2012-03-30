@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+
+import re, sys
+import mechanize
+pnr = sys.argv[1]
+
+#open browser
+br = mechanize.Browser()
+
+#open page
+br.open("http://www.indianrail.gov.in/pnr_Enq.html")
+
+#select form, nr=0 because it is the only form in the page
+br.select_form(nr=0)
+br["lccp_pnrno1"] = pnr
+br.submit()
+pure_shit = br.response().read()
+
