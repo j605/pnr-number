@@ -14,5 +14,5 @@ br.open("http://www.indianrail.gov.in/pnr_Enq.html")
 br.select_form(nr=0)
 br["lccp_pnrno1"] = pnr
 br.submit()
-pure_shit = br.response().read()
-
+unparsed_output = br.response().read()
+print unparsed_output		
