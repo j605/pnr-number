@@ -1,11 +1,12 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
-import re, sys
-import mechanize
-pnr = sys.argv[1]
+from sys import argv
+from mechanize import Browser
+from os import system
+pnr = argv[1]
 
 #open browser
-br = mechanize.Browser()
+br = Browser()
 
 #open page
 br.open("http://www.indianrail.gov.in/pnr_Enq.html")
@@ -15,4 +16,4 @@ br.select_form(nr=0)
 br["lccp_pnrno1"] = pnr
 br.submit()
 unparsed_output = br.response().read()
-print unparsed_output		
+system("echo '%s' | elinks --dump" %unparsed_output)
