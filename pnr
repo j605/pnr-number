@@ -13,7 +13,9 @@ br.open("http://www.indianrail.gov.in/pnr_Enq.html")
 
 #select form, nr=0 because it is the only form in the page
 br.select_form(nr=0)
+#set pnr number
 br["lccp_pnrno1"] = pnr
 br.submit()
 unparsed_output = br.response().read()
+#use elinks to display html in a pretty way
 system("echo '%s' | elinks --dump" %unparsed_output)
